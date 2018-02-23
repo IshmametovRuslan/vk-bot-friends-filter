@@ -41,6 +41,7 @@ if ( isset( $_GET['code'] ) ) {
 
 	// происходит перенаправление на основную страницу
 	header( 'location: ' . $vk_bot_uri );
+
 	die();
 } else {
 

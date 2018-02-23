@@ -8,6 +8,9 @@
 function get_header(){
 	include 'header.php';
 }
+function get_filter_tameplate(){
+	include 'filter_users.php';
+}
 function init() {
 	get_header();
 
@@ -133,7 +136,7 @@ function get_friends( $user_ids = null ) {
 	$action = 'get_friends';
 
 	if ( ! empty( $_REQUEST['user_ids'] ) ) {
-		$limit = 8;
+		$limit = 10;
 
 		if ( empty( $_GET['page'] ) ) {
 			$page = 0;
@@ -156,6 +159,7 @@ function get_friends( $user_ids = null ) {
 		function gender_user( $users ) {
 			return ( $users['items']['sex'] == '2' );
 		}
+		get_filter_tameplate();
 
 		pagination( $limit, $action, $user_ids );
 
@@ -223,13 +227,4 @@ function pagination( $limit, $action, $user_id ) {
 	<?php
 }
 
-
-function styles() {
-	?>
-	<style>
-
-
-	</style>
-	<?php
-}
 
