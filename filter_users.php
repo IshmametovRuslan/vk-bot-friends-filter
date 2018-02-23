@@ -36,6 +36,6 @@
 				<input class="form-control" type="search" value="" placeholder="Город" id="example-search-input">
 			</div>
 		</div>
-		<button class="btn btn-primary" type="submit">ОК</button>
+		<button class="btn btn-primary" type="submit" role="button">ОК</button>
 	</form>
 </div>
