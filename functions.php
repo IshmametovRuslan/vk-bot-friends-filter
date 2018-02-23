@@ -5,9 +5,11 @@
  * Date: 13.02.2018
  * Time: 20:35
  */
-
+function get_header(){
+	include 'header.php';
+}
 function init() {
-	styles();
+	get_header();
 	// проверка - передан ли атрибут строки action
 	if ( ! empty( $_GET['action'] ) ) {
 
