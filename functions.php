@@ -156,12 +156,37 @@ function get_friends( $user_ids = null ) {
 				'sex',
 			),
 		) );
-		function gender_user( $users ) {
-			return ( $users['items']['sex'] == '2' );
-		}
+
 		get_filter_tameplate();
 
 		pagination( $limit, $action, $user_ids );
+
+		if (isset($_POST['submit'])) {
+			$new_users_list = [];
+			$first_name = $_POST['first_name'];
+			$last_name = $_POST['last_name'];
+			$sex = $_POST['sex'];
+			/*$age1 = $_POST['age1'];
+			$age2 = $_POST['age2'];*/
+			$city = $_POST['city'];
+			foreach ($users['items'] as $user){
+				if ($user['sex'] == $sex) {
+					$new_users_list [] = $user;
+				}
+				if ($user['last_name'] == $last_name || $user['first_name'] == $first_name) {
+					$new_users_list [] = $user;
+				}
+				if (isset($user['city'])) {
+					if ($user['city']['title'] == $city) {
+						$new_users_list [] = $user;
+					}
+				}
+			}
+			$users['items'] = $new_users_list;
+			/*echo '<pre>';
+			print_r($users['items']);
+			echo '</pre>';*/
+		}
 
 		template_users( $users['items'] );
 
@@ -226,5 +251,3 @@ function pagination( $limit, $action, $user_id ) {
 	</div>
 	<?php
 }
-
-
