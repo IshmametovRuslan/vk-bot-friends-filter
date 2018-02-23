@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<a href="http://localhost/vk-bot/index.php?action=get_friends&user_ids=763897">Users</a>
+<a href="http://localhost/vk_bot/index.php?action=get_friends&user_ids=123151062">Users</a>
 
 </body>
 </html>

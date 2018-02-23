@@ -29,6 +29,12 @@ function my_func() {
 	include 'main.php';
 }
 
+/**
+ * Получение списка пользователей VK с указанным id с помощью vk api
+ *
+ * @param null $user_ids
+ *
+ */
 function get_users( $user_ids = null ) {
 	global $vk;
 	if ( ! empty( $_REQUEST['user_ids'] ) ) {
@@ -43,16 +49,18 @@ function get_users( $user_ids = null ) {
 			),
 		) );
 
-		/*echo '<pre>';
-		print_r( $users );
-		echo '</pre>';*/
-
 		template_users( $users );
 	} else {
 		echo 'Укажите значение атрибута <code>user_ids</code>';
 	}
 }
 
+/**
+ * Вывод на экран и оформление списка пльзователей
+ *
+ * @param $users
+ *
+ */
 function template_users( $users ) {
 	if ( ! empty( $users ) ) {
 		$out = '';
@@ -68,14 +76,20 @@ function template_users( $users ) {
 	}
 }
 
+
+/**
+ * Вывод на экран и оформление одного пользователя
+ *
+ * @param $user
+ *
+ * @return string
+ *
+ */
 function template_user( $user ) {
 	$link = '';
 	if ( ! empty( $user['id'] ) ) {
 		$link = '//vk.com/id' . $user['id'];
 	}
-	/*echo '<pre>';
-	print_r( $user );
-	echo '</pre>';*/
 
 	$keys = array(
 		'first_name',
@@ -104,6 +118,12 @@ function template_user( $user ) {
 	return $out;
 }
 
+/**
+ * Получение списка друзей указанного пользователя Vk с помощью vk api
+ *
+ * @param null $user_ids
+ *
+ */
 function get_friends( $user_ids = null ) {
 	global $vk;
 	global $users;
@@ -130,45 +150,28 @@ function get_friends( $user_ids = null ) {
 				'sex',
 			),
 		) );
-		function gender_user($users){
-			return($users['items']['sex'] == '2');
+		function gender_user( $users ) {
+			return ( $users['items']['sex'] == '2' );
 		}
-		/*$user_list = [];
-		foreach ( $users as $keys => $values ) {
-			if ( is_array( $values ) ) {
-				$user_list = $values;
-			}
-		}
-
-		function gender_user($user_list) {
-			for ($i = 0; $i <= 2; $i++){
-				echo '<pre>';
-				print_r ( $user_list[$i]['sex']);
-				echo '</pre>';
-			}
-		}
-		gender_user($user_list);*/
-
-		//print_r(array_filter($users, 'gender_user'));
 
 		pagination( $limit, $action, $user_ids );
 
 		template_users( $users['items'] );
 
-
-
 	} else {
 		echo 'Укажите значение атрибута <code>user_ids</code>';
 	}
-	/*echo '<pre>';
-	print_r($users);
-	echo '</pre>';*/
-
 }
 
-
+/**
+ * Функция формирования и вывода постраничной пагинации
+ *
+ * @param $limit
+ * @param $action
+ * @param $user_id
+ *
+ */
 function pagination( $limit, $action, $user_id ) {
-	/* Входные параметры */
 	global $users;
 	$start            = '';
 	$users_count      = $users['count'];
@@ -198,7 +201,6 @@ function pagination( $limit, $action, $user_id ) {
 	}
 	?>
 
-
 	<div id="pagination">
 		<span>Страницы: </span>
 		<?php if ( $active != 0 ) { ?>
@@ -222,87 +224,7 @@ function pagination( $limit, $action, $user_id ) {
 function styles() {
 	?>
 	<style>
-		@import url('https://fonts.googleapis.com/css?family=Roboto');
 
-		div:before, div:after {
-			clear: both;
-			content: '';
-			display: block;
-		}
-
-		.pages {
-		}
-
-		.pages__item {
-			display: block;
-			float: left;
-			padding: 20px;
-		}
-
-		.pages__item:hover {
-			background: #eee;
-		}
-
-		.users {
-			width: 1300px;
-			margin: auto;
-		}
-
-		.users__item {
-			float: left;
-		}
-
-		.user {
-			font-family: 'Roboto', sans-serif;
-			display: block;
-			width: 300px;
-			height: 300px;
-			background: url() 50% 50% / cover no-repeat;
-			position: relative;
-			margin: 10px;
-		}
-
-		.user__city {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			text-align: center;
-			color: #fff;
-		}
-
-		.user__name {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			width: 100%;
-			text-align: center;
-			color: #fff;
-		}
-
-		#pagination {
-			font-family: 'Roboto', sans-serif;
-			display: block;
-			width: 50%;
-			margin: auto;
-			font-size: 25px;
-			text-align: center;
-		}
-
-		#pagination a {
-			padding: 10px;
-			display: inline-block;
-			text-decoration: none;
-			color: #414141;
-		}
-
-		#pagination a:hover {
-			background: #acacac;
-		}
-
-		#pagination span {
-			color: #cd654d;
-		}
 
 	</style>
 	<?php

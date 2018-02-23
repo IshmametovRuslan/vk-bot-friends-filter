@@ -24,7 +24,7 @@ $vk_bot_uri = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
 
 $vk = new Vk( array(
 	'client_id'     => '6374232',
-	'client_secret' => 'rtNQ28Wgj8cwd4CYF3S7',
+	'client_secret' => 'EaWDuq0xH0a1fg4npj1m',
 	'redirect_uri'  => $vk_bot_uri,
 ) );
 
