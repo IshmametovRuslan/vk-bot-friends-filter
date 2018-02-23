@@ -183,12 +183,9 @@ function get_friends( $user_ids = null ) {
 				}
 			}
 			$users['items'] = $new_users_list;
-			/*echo '<pre>';
-			print_r($users['items']);
-			echo '</pre>';*/
 		}
 
-		template_users( $users['items'] );
+		?><div class="template_users col-md-9"><?php template_users( $users['items'] );?></div><?php
 
 	} else {
 		echo 'Укажите значение атрибута <code>user_ids</code>';
