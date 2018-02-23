@@ -10,6 +10,7 @@ function get_header(){
 }
 function init() {
 	get_header();
+
 	// проверка - передан ли атрибут строки action
 	if ( ! empty( $_GET['action'] ) ) {
 
