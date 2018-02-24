@@ -61,4 +61,4 @@ if ( isset( $_GET['code'] ) ) {
 		<?php
 	}
 }
-
+get_footer();
