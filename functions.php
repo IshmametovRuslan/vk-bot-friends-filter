@@ -5,19 +5,13 @@
  * Date: 13.02.2018
  * Time: 20:35
  */
-function get_header() {
-	include 'header.php';
-}
-function get_footer() {
-	include 'footer.php';
-}
 
-function get_filter_tameplate() {
-	include 'filter_users.php';
+function get_tameplate($page) {
+	include $page;
 }
 
 function init() {
-	get_header();
+	get_tameplate('header.php');
 
 	// проверка - передан ли атрибут строки action
 	if ( ! empty( $_GET['action'] ) ) {
@@ -32,7 +26,7 @@ function init() {
 			$action();
 		}
 	} else {
-		my_func();
+		get_tameplate('main.php');
 	}
 }
 
@@ -141,7 +135,7 @@ function get_friends( $user_ids = null ) {
 	$action = 'get_friends';
 
 	if ( ! empty( $_REQUEST['user_ids'] ) ) {
-		$limit = 10;
+		$limit = 15;
 
 		if ( empty( $_GET['page'] ) ) {
 			$page = 0;
@@ -162,7 +156,7 @@ function get_friends( $user_ids = null ) {
 			),
 		) );
 
-		get_filter_tameplate();
+		get_tameplate('filter_users.php');
 
 		pagination( $limit, $action, $user_ids );
 
@@ -189,8 +183,7 @@ function get_friends( $user_ids = null ) {
 				$users['items'] = $new_users_list;
 			}
 		}
-		?>
-		<div class="template_users col-md-9"><?php template_users( $users['items'] ); ?></div><?php
+		?><div class="template_users col-md-9"><?php template_users( $users['items'] ); ?></div><?php
 
 
 	} else {

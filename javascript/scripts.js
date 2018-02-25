@@ -1,3 +1,4 @@
+/*--Функция активации кнопки ОК формы фильтра--*/
 function checkParams() {
 	var last_name = $('.last_name').val();
 	var first_name = $('.first_name').val();
@@ -7,6 +8,6 @@ function checkParams() {
 	if(last_name.length != 0 || first_name.length != 0 || sex.length != 0 || city.length != 0) {
 		$('.send_button').removeAttr('disabled');
 	} else {
-		$('.send_button').attr('disabled', 'disabled');
+		$('.send_button').attr('disabled');
 	}
 }
